@@ -314,6 +314,7 @@
         );
         background-size: 200% 200%;
         animation: shine 4s infinite linear;
+        pointer-events: none;
       }
 
       .cheatsheet h3 {
@@ -492,39 +493,6 @@
         display: block;
       }
 
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .comic-container {
-          margin: 20px;
-          padding: 20px;
-        }
-
-        .sidebar {
-          position: relative;
-          top: auto;
-          left: auto;
-          transform: none;
-          margin: 20px auto;
-          width: 90%;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-
-        .sidebar a {
-          margin: 0 5px;
-        }
-
-        .bubble {
-          max-width: 60%;
-          font-size: 1rem;
-        }
-
-        .comic-title {
-          font-size: 2.5rem;
-        }
-      }
-
       /* Episode selector */
       .episode-selector {
         display: flex;
@@ -555,6 +523,185 @@
         background: var(--primary-red);
         transform: translateY(-5px);
       }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+
+        .container {
+          gap: 20px;
+        }
+
+        .comic-container {
+          padding: 20px 15px;
+          margin: 10px 0;
+        }
+
+        .comic-title {
+          font-size: 2.2rem;
+          padding: 0 15px;
+          margin-bottom: 20px;
+        }
+
+        .panel {
+          flex-direction: column;
+          align-items: center;
+          padding: 15px;
+          margin-bottom: 20px;
+        }
+
+        .avatar {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+
+        .avatar img {
+          width: 70px;
+          height: 70px;
+        }
+
+        .bubble {
+          max-width: 90%;
+          font-size: 1.1rem;
+          padding: 15px;
+          margin-left: 0;
+          text-align: center;
+        }
+
+        .bubble::after,
+        .bubble::before {
+          display: none;
+        }
+
+        .cheatsheet {
+          padding: 15px;
+          margin-top: 20px;
+        }
+
+        .cheatsheet h3 {
+          font-size: 1.5rem;
+        }
+
+        .cheatsheet code {
+          font-size: 0.9rem;
+        }
+
+        .nav {
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .nav a {
+          font-size: 1.3rem;
+          padding: 8px 16px;
+          width: 100%;
+          text-align: center;
+        }
+
+        .episode-selector {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .episode-btn {
+          font-size: 1.5rem;
+          padding: 8px 20px;
+          width: 100%;
+          text-align: center;
+        }
+
+        .footer {
+          margin-top: 30px;
+          font-size: 0.8rem;
+        }
+
+        /* Mobile sidebar */
+        .sidebar {
+          position: relative;
+          top: auto;
+          left: auto;
+          transform: none;
+          margin: 20px auto;
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-around;
+          padding: 15px 10px;
+        }
+
+        .sidebar a {
+          margin: 0 5px;
+          font-size: 1.2rem;
+          padding: 5px;
+        }
+
+        .sidebar a::before {
+          display: none;
+        }
+
+        /* Adjust action elements for mobile */
+        .action-text {
+          font-size: 2rem;
+          position: relative;
+          margin: 10px 0;
+          text-align: center;
+          display: block;
+          transform: rotate(-5deg);
+        }
+
+        .sound-effect {
+          font-size: 1.8rem;
+          position: relative;
+          margin: 10px 0;
+          text-align: center;
+          display: block;
+          transform: rotate(5deg);
+        }
+
+        .motion-lines {
+          display: none;
+        }
+      }
+
+      /* Additional small screen adjustments */
+      @media (max-width: 480px) {
+        .comic-title {
+          font-size: 1.8rem;
+        }
+
+        .avatar img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .bubble {
+          font-size: 1rem;
+          padding: 12px;
+        }
+
+        .episode-btn {
+          font-size: 1.3rem;
+        }
+
+        .nav a {
+          font-size: 1.2rem;
+        }
+
+        .sidebar a {
+          font-size: 1rem;
+        }
+
+        .action-text {
+          font-size: 1.7rem;
+        }
+
+        .sound-effect {
+          font-size: 1.5rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -577,7 +724,7 @@
             <div class="bubble student">
               What's this Git thing? Looks scary!
             </div>
-            <div class="sound-effect" style="top: 10px; right: 30px">GASP!</div>
+            <div class="sound-effect">GASP!</div>
           </div>
 
           <!-- Scene 2 -->
@@ -591,18 +738,7 @@
             <div class="bubble guru">
               Fear not! Let's start by creating a repo.
             </div>
-            <div class="action-text" style="right: 50px; bottom: 20px">
-              ZAP!
-            </div>
-            <div
-              class="motion-lines"
-              style="
-                width: 60px;
-                bottom: 30px;
-                right: 40px;
-                transform: rotate(45deg);
-              "
-            ></div>
+            <div class="action-text">ZAP!</div>
           </div>
 
           <div class="cheatsheet">
@@ -635,18 +771,7 @@
             <div class="bubble student">
               Oh no! I broke my code! Can I go back?
             </div>
-            <div class="sound-effect" style="top: 10px; right: 30px">
-              CRASH!
-            </div>
-            <div
-              class="motion-lines"
-              style="
-                width: 80px;
-                top: 40px;
-                right: 20px;
-                transform: rotate(-20deg);
-              "
-            ></div>
+            <div class="sound-effect">CRASH!</div>
           </div>
 
           <!-- Scene 2 -->
@@ -658,18 +783,7 @@
               />
             </div>
             <div class="bubble guru">Relax. Git is a time machine.</div>
-            <div class="action-text" style="right: 30px; top: 20px">
-              WHOOSH!
-            </div>
-            <div
-              class="motion-lines"
-              style="
-                width: 100px;
-                top: 50px;
-                right: 10px;
-                transform: rotate(10deg);
-              "
-            ></div>
+            <div class="action-text">WHOOSH!</div>
           </div>
 
           <div class="cheatsheet">
