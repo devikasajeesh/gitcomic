@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Git Comic - Enhanced Style</title>
+    <title>Git Adventure - Learn Git the Fun Way!</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
-      /* style.css - Enhanced Comic Book Theme */
+      /* Enhanced Comic Book Theme */
       @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Bangers&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Permanent+Marker&display=swap");
 
@@ -19,6 +19,7 @@
         --primary-yellow: #ffd600;
         --accent-orange: #ff7b25;
         --accent-purple: #8e24aa;
+        --accent-green: #4caf50;
       }
 
       * {
@@ -337,56 +338,6 @@
         margin: 4px 0;
       }
 
-      /* Sidebar Navigation */
-      .sidebar {
-        position: fixed;
-        left: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: var(--primary-red);
-        padding: 20px 15px;
-        border: 5px solid #000;
-        border-radius: 15px;
-        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .sidebar a {
-        display: block;
-        margin: 15px 0;
-        text-decoration: none;
-        font-family: "Bangers", cursive;
-        font-size: 1.5rem;
-        color: #fff;
-        text-shadow: 2px 2px 0 #000;
-        transition: all 0.3s ease;
-        letter-spacing: 1px;
-        position: relative;
-        padding: 5px 10px;
-        text-align: center;
-      }
-
-      .sidebar a:hover {
-        transform: scale(1.1) translateX(5px);
-        color: var(--primary-yellow);
-      }
-
-      .sidebar a::before {
-        content: "★";
-        position: absolute;
-        left: -15px;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .sidebar a:hover::before {
-        opacity: 1;
-      }
-
       /* Episode Footer */
       .footer {
         text-align: center;
@@ -445,6 +396,7 @@
         transform: rotate(10deg);
         z-index: 4;
         animation: wobble 0.5s infinite alternate;
+        pointer-events: none;
       }
 
       @keyframes wobble {
@@ -499,6 +451,7 @@
         justify-content: center;
         margin-bottom: 20px;
         gap: 20px;
+        flex-wrap: wrap;
       }
 
       .episode-btn {
@@ -522,6 +475,215 @@
       .episode-btn.active {
         background: var(--primary-red);
         transform: translateY(-5px);
+      }
+
+      /* Command boxes */
+      .command-box {
+        background: #f0f7ff;
+        border: 3px solid #1e88e5;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 10px 0;
+        font-family: monospace;
+        font-size: 1.1rem;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      /* Example boxes */
+      .example-box {
+        background: #e8f5e9;
+        border: 3px solid var(--accent-green);
+        border-radius: 8px;
+        padding: 15px;
+        margin: 15px 0;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .example-box h4 {
+        font-family: "Bangers", cursive;
+        font-size: 1.5rem;
+        color: var(--accent-green);
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 0 #000;
+      }
+
+      /* Interactive elements */
+      .interactive-demo {
+        background: #fff3e0;
+        border: 3px solid var(--accent-orange);
+        border-radius: 8px;
+        padding: 15px;
+        margin: 15px 0;
+        text-align: center;
+      }
+
+      .demo-btn {
+        font-family: "Bangers", cursive;
+        font-size: 1.3rem;
+        padding: 8px 16px;
+        background: var(--accent-orange);
+        color: white;
+        border: 2px solid #000;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+        margin: 5px;
+      }
+
+      .demo-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      /* Progress tracker */
+      .progress-container {
+        background: #fff;
+        border: 3px solid #000;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .progress-bar {
+        height: 20px;
+        background: #e0e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--accent-green);
+        width: 0%;
+        transition: width 0.5s ease;
+      }
+
+      /* Tooltip */
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 2px dotted var(--primary-blue);
+        cursor: help;
+      }
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -100px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.9rem;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Terminal simulator */
+      .terminal {
+        background: #1e1e1e;
+        border: 3px solid #000;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+        font-family: monospace;
+        color: #fff;
+        height: 250px;
+        overflow-y: auto;
+      }
+
+      .terminal-header {
+        background: #363636;
+        padding: 8px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin: -15px -15px 15px -15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .terminal-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .terminal-control {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .terminal-control.close {
+        background: #ff5f56;
+      }
+      .terminal-control.minimize {
+        background: #ffbd2e;
+      }
+      .terminal-control.maximize {
+        background: #27c93f;
+      }
+
+      .terminal-prompt {
+        color: #00ff00;
+      }
+
+      .terminal-input {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-family: monospace;
+        font-size: 1rem;
+        width: 80%;
+        outline: none;
+      }
+
+      .terminal-output {
+        margin-top: 10px;
+        white-space: pre-wrap;
+      }
+
+      /* Installation buttons */
+      .install-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin: 15px 0;
+      }
+
+      .install-btn {
+        font-family: "Bangers", cursive;
+        font-size: 1.3rem;
+        padding: 10px 20px;
+        background: var(--primary-blue);
+        color: white;
+        border: 2px solid #000;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .install-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+        color: white;
       }
 
       /* Responsive adjustments */
@@ -619,29 +781,6 @@
           font-size: 0.8rem;
         }
 
-        /* Mobile sidebar */
-        .sidebar {
-          position: relative;
-          top: auto;
-          left: auto;
-          transform: none;
-          margin: 20px auto;
-          width: 100%;
-          flex-direction: row;
-          justify-content: space-around;
-          padding: 15px 10px;
-        }
-
-        .sidebar a {
-          margin: 0 5px;
-          font-size: 1.2rem;
-          padding: 5px;
-        }
-
-        .sidebar a::before {
-          display: none;
-        }
-
         /* Adjust action elements for mobile */
         .action-text {
           font-size: 2rem;
@@ -663,6 +802,17 @@
 
         .motion-lines {
           display: none;
+        }
+
+        .command-box {
+          font-size: 0.9rem;
+          padding: 10px;
+          overflow-x: auto;
+        }
+
+        .terminal {
+          height: 200px;
+          font-size: 0.9rem;
         }
       }
 
@@ -690,10 +840,6 @@
           font-size: 1.2rem;
         }
 
-        .sidebar a {
-          font-size: 1rem;
-        }
-
         .action-text {
           font-size: 1.7rem;
         }
@@ -701,57 +847,130 @@
         .sound-effect {
           font-size: 1.5rem;
         }
+
+        .install-btn {
+          font-size: 1.1rem;
+          padding: 8px 16px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="episode-selector">
-        <button class="episode-btn active" data-episode="1">Episode 1</button>
-        <button class="episode-btn" data-episode="2">Episode 2</button>
+        <button class="episode-btn active" data-episode="1">Setup</button>
+        <button class="episode-btn" data-episode="2">Install</button>
+        <button class="episode-btn" data-episode="3">Configure</button>
+        <button class="episode-btn" data-episode="4">First Commit</button>
+        <button class="episode-btn" data-episode="5">GitHub</button>
+      </div>
+
+      <!-- Progress tracker -->
+      <div class="progress-container">
+        <h3>
+          Your Git Journey: <span id="progress-percent">0%</span> Complete
+        </h3>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p>Complete all episodes to become a Git master!</p>
       </div>
 
       <!-- Episode 1 -->
       <div class="episode active" id="episode1">
         <div class="comic-container">
-          <h1 class="comic-title">Episode 1: The Mysterious Repo</h1>
+          <h1 class="comic-title">Episode 1: The Setup Saga</h1>
 
           <!-- Scene 1 -->
           <div class="panel">
             <div class="avatar">
-              <img src="assets/ckid.jpg" alt="Student Avatar" />
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                alt="Student Avatar"
+              />
             </div>
             <div class="bubble student">
-              What's this Git thing? Looks scary!
+              I want to learn Git but don't know where to start! It seems
+              complicated...
             </div>
-            <div class="sound-effect">GASP!</div>
+            <div class="sound-effect" style="top: 10px; right: 30px">GASP!</div>
           </div>
 
           <!-- Scene 2 -->
           <div class="panel">
             <div class="avatar">
               <img
-                src="assets/teacher-removebg-preview.png"
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
                 alt="Guru Avatar"
               />
             </div>
             <div class="bubble guru">
-              Fear not! Let's start by creating a repo.
+              Fear not! Git is like a superhero for your code! It helps you
+              track changes, collaborate with others, and never lose your work.
             </div>
-            <div class="action-text">ZAP!</div>
+            <div class="action-text" style="right: 50px; bottom: 20px">
+              ZAP!
+            </div>
+            <div
+              class="motion-lines"
+              style="
+                width: 60px;
+                bottom: 30px;
+                right: 40px;
+                transform: rotate(45deg);
+              "
+            ></div>
+          </div>
+
+          <!-- Scene 3 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
+                alt="Guru Avatar"
+              />
+            </div>
+            <div class="bubble guru">
+              First, we need the right tools. Think of VS Code as your coding
+              workshop and Git as your super-powered toolbox!
+            </div>
           </div>
 
           <div class="cheatsheet">
-            <h3>Cheat Sheet</h3>
-            <code>git init</code> – Initialize repo<br />
-            <code>git status</code> – See changes<br />
-            <code>git add .</code> – Stage changes<br />
-            <code>git commit -m "message"</code> – Save snapshot
+            <h3>Step 1: Install VS Code</h3>
+            <p>Go to <strong>code.visualstudio.com</strong></p>
+
+            <div class="install-buttons">
+              <a
+                href="https://code.visualstudio.com/download"
+                target="_blank"
+                class="install-btn"
+              >
+                <i class="fas fa-download"></i> Download VS Code
+              </a>
+            </div>
+
+            <p>Open VS Code → Install extensions:</p>
+            <div class="command-box">GitHub Pull Requests and Issues</div>
+            <div class="command-box">
+              GitLens (optional, helps understand Git history)
+            </div>
+
+            <div class="example-box">
+              <h4>Why VS Code?</h4>
+              <p>
+                VS Code is like a Swiss Army knife for coding! It has built-in
+                Git support, syntax highlighting, and thousands of extensions to
+                make coding easier.
+              </p>
+            </div>
           </div>
 
           <!-- Navigation -->
           <div class="nav">
-            <a href="#" onclick="showEpisode(2)">Next Episode →</a>
+            <a href="#" onclick="showEpisode(2); updateProgress(20);"
+              >Next Episode →</a
+            >
           </div>
 
           <div class="footer">Learn Git the fun way!</div>
@@ -761,55 +980,536 @@
       <!-- Episode 2 -->
       <div class="episode" id="episode2">
         <div class="comic-container">
-          <h1 class="comic-title">Episode 2: Snapshots of Doom</h1>
+          <h1 class="comic-title">Episode 2: Git Installation Adventure</h1>
 
           <!-- Scene 1 -->
           <div class="panel">
             <div class="avatar">
-              <img src="assets/ckid.jpg" alt="Student Avatar" />
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                alt="Student Avatar"
+              />
             </div>
             <div class="bubble student">
-              Oh no! I broke my code! Can I go back?
+              VS Code is installed! What's next? Do I need more tools?
             </div>
-            <div class="sound-effect">CRASH!</div>
           </div>
 
           <!-- Scene 2 -->
           <div class="panel">
             <div class="avatar">
               <img
-                src="assets/teacher-removebg-preview.png"
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
                 alt="Guru Avatar"
               />
             </div>
-            <div class="bubble guru">Relax. Git is a time machine.</div>
-            <div class="action-text">WHOOSH!</div>
+            <div class="bubble guru">
+              Now we install Git itself! This is where the magic happens. Git is
+              like a time machine for your code!
+            </div>
+            <div class="action-text" style="right: 30px; top: 20px">
+              WHOOSH!
+            </div>
+            <div
+              class="motion-lines"
+              style="
+                width: 100px;
+                top: 50px;
+                right: 10px;
+                transform: rotate(10deg);
+              "
+            ></div>
           </div>
 
           <div class="cheatsheet">
-            <h3>Cheat Sheet</h3>
-            <code>git log --oneline</code> – History<br />
-            <code>git diff</code> – See changes<br />
-            <code>git checkout &lt;commit&gt;</code> – Travel back<br />
-            <code>git restore</code> – Undo changes
+            <h3>Step 2: Install Git</h3>
+            <p>Go to <strong>git-scm.com</strong></p>
+
+            <div class="install-buttons">
+              <a
+                href="https://git-scm.com/downloads"
+                target="_blank"
+                class="install-btn"
+              >
+                <i class="fas fa-download"></i> Download Git
+              </a>
+            </div>
+
+            <p>Open terminal (in VS Code or system):</p>
+            <div class="command-box">git --version</div>
+            <p>✅ If you see a version, Git is installed correctly!</p>
+
+            <div class="example-box">
+              <h4>What is Git?</h4>
+              <p>
+                Git is a version control system that tracks changes to your
+                code. It's like "Save Points" in a video game - you can always
+                go back if something breaks!
+              </p>
+            </div>
+          </div>
+
+          <!-- Terminal Simulator -->
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <div class="terminal-control close"></div>
+                <div class="terminal-control minimize"></div>
+                <div class="terminal-control maximize"></div>
+              </div>
+              <div>bash</div>
+              <div></div>
+            </div>
+            <div class="terminal-output" id="terminal-output">
+              <span class="terminal-prompt">$ </span>git --version<br />
+              <span id="git-version-output"
+                >Click "Check Git Version" to simulate</span
+              >
+            </div>
+            <div>
+              <span class="terminal-prompt">$ </span>
+              <input
+                type="text"
+                class="terminal-input"
+                id="terminal-input"
+                placeholder="Type 'git --version' and press Enter"
+              />
+            </div>
+          </div>
+
+          <div class="interactive-demo">
+            <button class="demo-btn" onclick="checkGitVersion()">
+              Check Git Version
+            </button>
+            <p id="git-version-result"></p>
           </div>
 
           <!-- Navigation -->
           <div class="nav">
-            <a href="#" onclick="showEpisode(1)">← Previous Episode</a>
-            <a href="#">Next Episode →</a>
+            <a href="#" onclick="showEpisode(1);">← Previous Episode</a>
+            <a href="#" onclick="showEpisode(3); updateProgress(40);"
+              >Next Episode →</a
+            >
           </div>
 
           <div class="footer">Learn Git the fun way!</div>
         </div>
       </div>
-    </div>
 
-    <div class="sidebar">
-      <a href="#"><i class="fas fa-home"></i> Home</a>
-      <a href="#"><i class="fas fa-book"></i> Episodes</a>
-      <a href="#"><i class="fas fa-trophy"></i> Challenges</a>
-      <a href="#"><i class="fas fa-question-circle"></i> About</a>
+      <!-- Episode 3 -->
+      <div class="episode" id="episode3">
+        <div class="comic-container">
+          <h1 class="comic-title">Episode 3: Identity Crisis</h1>
+
+          <!-- Scene 1 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                alt="Student Avatar"
+              />
+            </div>
+            <div class="bubble student">
+              Git is installed! Can I start coding now? I'm ready to build
+              amazing things!
+            </div>
+          </div>
+
+          <!-- Scene 2 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
+                alt="Guru Avatar"
+              />
+            </div>
+            <div class="bubble guru">
+              Not so fast! First, we need to tell Git who you are. Every
+              superhero needs an identity!
+            </div>
+            <div class="action-text" style="right: 50px; bottom: 20px">
+              POP!
+            </div>
+          </div>
+
+          <div class="cheatsheet">
+            <h3>Step 3: First-Time Git Setup</h3>
+            <p>In terminal, run these commands with your info:</p>
+            <div class="command-box">
+              git config --global user.name "Your Name"
+            </div>
+            <div class="command-box">
+              git config --global user.email "your@email.com"
+            </div>
+            <p>This identifies you as the author of all your Git commits!</p>
+
+            <div class="example-box">
+              <h4>Why Set Your Identity?</h4>
+              <p>
+                When you work with others, they need to know who made which
+                changes. It's like signing your artwork!
+              </p>
+              <p>
+                Example: If you're working on a team project, everyone will see
+                that you fixed that tricky bug.
+              </p>
+            </div>
+          </div>
+
+          <!-- Terminal Simulator -->
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <div class="terminal-control close"></div>
+                <div class="terminal-control minimize"></div>
+                <div class="terminal-control maximize"></div>
+              </div>
+              <div>bash</div>
+              <div></div>
+            </div>
+            <div class="terminal-output" id="config-terminal-output">
+              <span class="terminal-prompt">$ </span>git config --global
+              user.name "Your Name"<br />
+              <span class="terminal-prompt">$ </span>git config --global
+              user.email "your@email.com"<br />
+              <span id="config-output"
+                >Enter your details and click "Set Identity" to simulate</span
+              >
+            </div>
+            <div>
+              <span class="terminal-prompt">$ </span>
+              <input
+                type="text"
+                class="terminal-input"
+                id="config-terminal-input"
+                placeholder="Try 'git config --global user.name YourName'"
+              />
+            </div>
+          </div>
+
+          <!-- Interactive Demo -->
+          <div class="interactive-demo">
+            <h3>Configure Your Identity</h3>
+            <input
+              type="text"
+              id="user-name"
+              placeholder="Your Name"
+              style="
+                padding: 8px;
+                margin: 5px;
+                border: 2px solid #000;
+                border-radius: 4px;
+              "
+            />
+            <input
+              type="email"
+              id="user-email"
+              placeholder="your@email.com"
+              style="
+                padding: 8px;
+                margin: 5px;
+                border: 2px solid #000;
+                border-radius: 4px;
+              "
+            />
+            <button class="demo-btn" onclick="setUserConfig()">
+              Set Identity
+            </button>
+            <p id="config-result"></p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="nav">
+            <a href="#" onclick="showEpisode(2);">← Previous Episode</a>
+            <a href="#" onclick="showEpisode(4); updateProgress(60);"
+              >Next Episode →</a
+            >
+          </div>
+
+          <div class="footer">Learn Git the fun way!</div>
+        </div>
+      </div>
+
+      <!-- Episode 4 -->
+      <div class="episode" id="episode4">
+        <div class="comic-container">
+          <h1 class="comic-title">Episode 4: First Commit</h1>
+
+          <!-- Scene 1 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                alt="Student Avatar"
+              />
+            </div>
+            <div class="bubble student">
+              Git knows who I am! What's next? I'm ready to start coding!
+            </div>
+          </div>
+
+          <!-- Scene 2 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
+                alt="Guru Avatar"
+              />
+            </div>
+            <div class="bubble guru">
+              Now we create your first project with Git! This is where the fun
+              begins. Think of it like building a Lego set with instructions
+              that remember every step!
+            </div>
+            <div class="action-text" style="right: 30px; top: 20px">BAM!</div>
+          </div>
+
+          <div class="cheatsheet">
+            <h3>Step 4: Create a Project with Git</h3>
+            <p>Open VS Code → Open folder/project.</p>
+            <p>Initialize Git in your project folder:</p>
+            <div class="command-box">git init</div>
+            <p>Create a file → save.</p>
+            <p>Stage & commit your changes:</p>
+            <div class="command-box">git add .</div>
+            <div class="command-box">git commit -m "First commit 🚀"</div>
+            <p>🎉 Congratulations! You've made your first Git commit!</p>
+
+            <div class="example-box">
+              <h4>What's Happening Here?</h4>
+              <p>
+                <span class="tooltip"
+                  >git init<span class="tooltiptext"
+                    >Initializes a new Git repository</span
+                  ></span
+                >
+                - Creates a new Git project
+              </p>
+              <p>
+                <span class="tooltip"
+                  >git add .<span class="tooltiptext"
+                    >Stages all changes for commit</span
+                  ></span
+                >
+                - Prepares your changes to be saved
+              </p>
+              <p>
+                <span class="tooltip"
+                  >git commit<span class="tooltiptext"
+                    >Saves your changes with a message</span
+                  ></span
+                >
+                - Takes a snapshot of your code with a message
+              </p>
+            </div>
+          </div>
+
+          <!-- Terminal Simulator -->
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <div class="terminal-control close"></div>
+                <div class="terminal-control minimize"></div>
+                <div class="terminal-control maximize"></div>
+              </div>
+              <div>bash</div>
+              <div></div>
+            </div>
+            <div class="terminal-output" id="commit-terminal-output">
+              <span class="terminal-prompt">$ </span>mkdir my-project<br />
+              <span class="terminal-prompt">$ </span>cd my-project<br />
+              <span class="terminal-prompt">$ </span>git init<br />
+              <span class="terminal-prompt">$ </span>echo "Hello Git!" >
+              README.md<br />
+              <span class="terminal-prompt">$ </span>git add .<br />
+              <span class="terminal-prompt">$ </span>git commit -m "First
+              commit"<br />
+              <span id="commit-output"
+                >Click "Simulate First Commit" to see the result</span
+              >
+            </div>
+            <div>
+              <span class="terminal-prompt">$ </span>
+              <input
+                type="text"
+                class="terminal-input"
+                id="commit-terminal-input"
+                placeholder="Try 'git init' or 'git status'"
+              />
+            </div>
+          </div>
+
+          <!-- Interactive Demo -->
+          <div class="interactive-demo">
+            <button class="demo-btn" onclick="simulateFirstCommit()">
+              Simulate First Commit
+            </button>
+            <p id="commit-result"></p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="nav">
+            <a href="#" onclick="showEpisode(3);">← Previous Episode</a>
+            <a href="#" onclick="showEpisode(5); updateProgress(80);"
+              >Next Episode →</a
+            >
+          </div>
+
+          <div class="footer">Learn Git the fun way!</div>
+        </div>
+      </div>
+
+      <!-- Episode 5 -->
+      <div class="episode" id="episode5">
+        <div class="comic-container">
+          <h1 class="comic-title">Episode 5: GitHub Connection</h1>
+
+          <!-- Scene 1 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                alt="Student Avatar"
+              />
+            </div>
+            <div class="bubble student">
+              I've made commits! How do I share my code with others? I want to
+              show my friends what I built!
+            </div>
+          </div>
+
+          <!-- Scene 2 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
+                alt="Guru Avatar"
+              />
+            </div>
+            <div class="bubble guru">
+              Time to connect to GitHub! This lets you backup and share your
+              code. It's like putting your project in the cloud where everyone
+              can see it!
+            </div>
+            <div class="action-text" style="right: 50px; bottom: 20px">
+              ZING!
+            </div>
+          </div>
+
+          <div class="cheatsheet">
+            <h3>Step 5: Connect to GitHub</h3>
+            <p>Make a repo on GitHub.com (click the + sign)</p>
+
+            <div class="install-buttons">
+              <a
+                href="https://github.com/signup"
+                target="_blank"
+                class="install-btn"
+              >
+                <i class="fab fa-github"></i> Sign up for GitHub
+              </a>
+              <a
+                href="https://github.com/new"
+                target="_blank"
+                class="install-btn"
+              >
+                <i class="fas fa-plus"></i> Create New Repo
+              </a>
+            </div>
+
+            <p>Copy the repo link (HTTPS)</p>
+            <p>In terminal, connect your local repo to GitHub:</p>
+            <div class="command-box">
+              git remote add origin https://github.com/yourusername/repo.git
+            </div>
+            <div class="command-box">git push -u origin main</div>
+            <p>Now your code is on GitHub! 🎊</p>
+
+            <div class="example-box">
+              <h4>Why Use GitHub?</h4>
+              <p>GitHub is like a social network for code! You can:</p>
+              <ul>
+                <li>Back up your projects</li>
+                <li>Collaborate with others</li>
+                <li>Showcase your work to employers</li>
+                <li>Contribute to open source projects</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Terminal Simulator -->
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <div class="terminal-control close"></div>
+                <div class="terminal-control minimize"></div>
+                <div class="terminal-control maximize"></div>
+              </div>
+              <div>bash</div>
+              <div></div>
+            </div>
+            <div class="terminal-output" id="github-terminal-output">
+              <span class="terminal-prompt">$ </span>git remote add origin
+              https://github.com/yourusername/repo.git<br />
+              <span class="terminal-prompt">$ </span>git push -u origin main<br />
+              <span id="github-output"
+                >Enter your GitHub details and click "Connect to GitHub" to
+                simulate</span
+              >
+            </div>
+            <div>
+              <span class="terminal-prompt">$ </span>
+              <input
+                type="text"
+                class="terminal-input"
+                id="github-terminal-input"
+                placeholder="Try 'git remote add origin [url]'"
+              />
+            </div>
+          </div>
+
+          <!-- Interactive Demo -->
+          <div class="interactive-demo">
+            <h3>Simulate GitHub Setup</h3>
+            <input
+              type="text"
+              id="github-username"
+              placeholder="GitHub username"
+              style="
+                padding: 8px;
+                margin: 5px;
+                border: 2px solid #000;
+                border-radius: 4px;
+              "
+            />
+            <input
+              type="text"
+              id="repo-name"
+              placeholder="Repository name"
+              style="
+                padding: 8px;
+                margin: 5px;
+                border: 2px solid #000;
+                border-radius: 4px;
+              "
+            />
+            <button class="demo-btn" onclick="setupGitHub()">
+              Connect to GitHub
+            </button>
+            <p id="github-result"></p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="nav">
+            <a href="#" onclick="showEpisode(4);">← Previous Episode</a>
+            <a href="#" onclick="showEpisode(1); updateProgress(100);"
+              >Back to Start</a
+            >
+          </div>
+
+          <div class="footer">Learn Git the fun way!</div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -831,12 +1531,97 @@
         document
           .querySelector('[data-episode="' + episodeNumber + '"]')
           .classList.add("active");
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+      }
+
+      // Update progress bar
+      function updateProgress(percent) {
+        const progressFill = document.getElementById("progress-fill");
+        const progressPercent = document.getElementById("progress-percent");
+
+        progressFill.style.width = percent + "%";
+        progressPercent.textContent = percent + "%";
+      }
+
+      // Interactive demo functions
+      function checkGitVersion() {
+        document.getElementById("git-version-output").textContent =
+          "git version 2.37.1 (simulated)";
+        document.getElementById("git-version-result").textContent =
+          "✅ Git is installed correctly!";
+      }
+
+      function setUserConfig() {
+        const name = document.getElementById("user-name").value || "Your Name";
+        const email =
+          document.getElementById("user-email").value || "your@email.com";
+
+        document.getElementById(
+          "config-output"
+        ).textContent = `Identity set to: ${name} <${email}> (simulated)`;
+        document.getElementById("config-result").textContent =
+          "✅ Git identity configured successfully!";
+      }
+
+      function simulateFirstCommit() {
+        document.getElementById("commit-output").textContent =
+          "[main (root-commit) abc1234] First commit 🚀\n 1 file changed, 1 insertion(+)";
+        document.getElementById("commit-result").textContent =
+          "✅ First commit created successfully!";
+      }
+
+      function setupGitHub() {
+        const username =
+          document.getElementById("github-username").value || "yourusername";
+        const repo =
+          document.getElementById("repo-name").value || "awesome-project";
+
+        document.getElementById(
+          "github-output"
+        ).textContent = `Enumerating objects: 3, done.\nCounting objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 256 bytes | 256.00 KiB/s, done.\nTotal 3 (delta 0), reused 0 (delta 0), pack-reused 0\nTo https://github.com/${username}/${repo}.git\n * [new branch]      main -> main\nBranch 'main' set up to track remote branch 'main' from 'origin'.`;
+        document.getElementById("github-result").textContent =
+          "✅ Successfully connected to GitHub!";
       }
 
       // Add event listeners to episode buttons
       document.querySelectorAll(".episode-btn").forEach((btn) => {
         btn.addEventListener("click", function () {
           showEpisode(this.getAttribute("data-episode"));
+        });
+      });
+
+      // Terminal input functionality
+      document.querySelectorAll(".terminal-input").forEach((input) => {
+        input.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            const command = this.value;
+            this.value = "";
+
+            // Simple command simulation
+            if (command.includes("git --version")) {
+              const outputEl = this.parentElement.previousElementSibling;
+              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>git version 2.37.1 (simulated)<br>`;
+              outputEl.scrollTop = outputEl.scrollHeight;
+            } else if (command.includes("git config")) {
+              const outputEl = this.parentElement.previousElementSibling;
+              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Configuration updated (simulated)<br>`;
+              outputEl.scrollTop = outputEl.scrollHeight;
+            } else if (command.includes("git init")) {
+              const outputEl = this.parentElement.previousElementSibling;
+              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Initialized empty Git repository (simulated)<br>`;
+              outputEl.scrollTop = outputEl.scrollHeight;
+            } else if (command.includes("git remote")) {
+              const outputEl = this.parentElement.previousElementSibling;
+              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Remote added successfully (simulated)<br>`;
+              outputEl.scrollTop = outputEl.scrollHeight;
+            } else if (command) {
+              const outputEl = this.parentElement.previousElementSibling;
+              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Command not recognized: ${command}<br>`;
+              outputEl.scrollTop = outputEl.scrollHeight;
+            }
+          }
         });
       });
     </script>
