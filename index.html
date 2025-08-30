@@ -1699,3 +1699,375 @@
     </script>
   </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Adventure - Learn Git the Fun Way!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Existing styles remain the same */
+
+      /* Chatbot Styles */
+      .chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+      }
+
+      .chatbot-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--primary-red);
+        color: white;
+        border: 3px solid #000;
+        box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        transition: all 0.3s ease;
+      }
+
+      .chatbot-button:hover {
+        transform: scale(1.1);
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .chatbot-window {
+        position: absolute;
+        bottom: 70px;
+        right: 0;
+        width: 350px;
+        height: 450px;
+        background: white;
+        border: 4px solid #000;
+        border-radius: 15px;
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        font-family: "Comic Neue", cursive;
+      }
+
+      .chatbot-header {
+        background: var(--primary-blue);
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+        border-bottom: 3px solid #000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .chatbot-messages {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .message {
+        max-width: 80%;
+        padding: 10px 15px;
+        border-radius: 18px;
+        border: 2px solid #000;
+        position: relative;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .user-message {
+        align-self: flex-end;
+        background: #e1f5fe;
+        border-color: #01579b;
+      }
+
+      .bot-message {
+        align-self: flex-start;
+        background: #fff9c4;
+        border-color: #f57f17;
+      }
+
+      .chatbot-input {
+        display: flex;
+        padding: 10px;
+        border-top: 3px solid #000;
+        background: white;
+      }
+
+      .chatbot-input input {
+        flex: 1;
+        padding: 10px;
+        border: 2px solid #000;
+        border-radius: 20px;
+        font-family: "Comic Neue", cursive;
+        font-size: 14px;
+      }
+
+      .chatbot-input button {
+        margin-left: 10px;
+        background: var(--primary-blue);
+        color: white;
+        border: 2px solid #000;
+        border-radius: 20px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-family: "Comic Neue", cursive;
+        font-weight: bold;
+      }
+
+      .chatbot-input button:hover {
+        background: var(--primary-red);
+      }
+
+      .typing-indicator {
+        display: none;
+        align-self: flex-start;
+        background: #fff9c4;
+        border: 2px solid #f57f17;
+        border-radius: 18px;
+        padding: 10px 15px;
+        box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        float: left;
+        margin: 0 1px;
+        background-color: #000;
+        display: block;
+        border-radius: 50%;
+        opacity: 0.4;
+      }
+
+      .typing-indicator span:nth-of-type(1) {
+        animation: typing 1s infinite;
+      }
+
+      .typing-indicator span:nth-of-type(2) {
+        animation: typing 1s 0.33s infinite;
+      }
+
+      .typing-indicator span:nth-of-type(3) {
+        animation: typing 1s 0.66s infinite;
+      }
+
+      @keyframes typing {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .chatbot-window {
+          width: 300px;
+          height: 400px;
+          right: -20px;
+        }
+
+        .chatbot-container {
+          bottom: 10px;
+          right: 10px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .chatbot-window {
+          width: 280px;
+          height: 380px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Your existing HTML content remains the same -->
+
+    <!-- Chatbot Container -->
+    <div class="chatbot-container">
+      <div class="chatbot-button" id="chatbotToggle">
+        <i class="fas fa-robot"></i>
+      </div>
+      <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+          <span>Git Assistant</span>
+          <button
+            id="minimizeChat"
+            style="
+              background: none;
+              border: none;
+              color: white;
+              cursor: pointer;
+            "
+          >
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages">
+          <div class="message bot-message">
+            Hi there! I'm your Git assistant. I can help you troubleshoot any
+            errors you encounter while setting up or using Git. What seems to be
+            the problem?
+          </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="chatbot-input">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Describe your error or paste terminal output..."
+          />
+          <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Your existing JavaScript remains the same
+
+      // Chatbot functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatbotToggle = document.getElementById("chatbotToggle");
+        const chatbotWindow = document.getElementById("chatbotWindow");
+        const chatMessages = document.getElementById("chatMessages");
+        const userInput = document.getElementById("userInput");
+        const sendMessage = document.getElementById("sendMessage");
+        const typingIndicator = document.getElementById("typingIndicator");
+        const minimizeChat = document.getElementById("minimizeChat");
+
+        // Toggle chatbot window
+        chatbotToggle.addEventListener("click", function () {
+          if (chatbotWindow.style.display === "flex") {
+            chatbotWindow.style.display = "none";
+          } else {
+            chatbotWindow.style.display = "flex";
+            userInput.focus();
+          }
+        });
+
+        // Minimize chatbot
+        minimizeChat.addEventListener("click", function () {
+          chatbotWindow.style.display = "none";
+        });
+
+        // Send message function
+        function sendUserMessage() {
+          const message = userInput.value.trim();
+          if (message) {
+            // Add user message to chat
+            addMessage(message, "user");
+            userInput.value = "";
+
+            // Show typing indicator
+            typingIndicator.style.display = "flex";
+
+            // Call Groq API
+            callGroqAPI(message);
+          }
+        }
+
+        // Send message on button click
+        sendMessage.addEventListener("click", sendUserMessage);
+
+        // Send message on Enter key
+        userInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendUserMessage();
+          }
+        });
+
+        // Add message to chat
+        function addMessage(text, sender) {
+          const messageDiv = document.createElement("div");
+          messageDiv.classList.add("message");
+          messageDiv.classList.add(sender + "-message");
+          messageDiv.textContent = text;
+          chatMessages.appendChild(messageDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Call Groq API
+        async function callGroqAPI(userMessage) {
+          try {
+            const apiUrl = "/.netlify/functions/chat";
+
+            const response = await fetch(apiUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${apiKey}`,
+              },
+              body: JSON.stringify({
+                model: "llama-3.1-8b-instant", // You can change this to other available models
+                messages: [
+                  {
+                    role: "system",
+                    content:
+                      "You are a helpful assistant specialized in Git and terminal errors. Provide clear, concise explanations and solutions for any Git or terminal-related issues users might encounter. Focus on troubleshooting installation, setup, and usage problems.",
+                  },
+                  {
+                    role: "user",
+                    content: userMessage,
+                  },
+                ],
+                temperature: 0.7,
+                max_tokens: 1024,
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(`API error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const botResponse = data.choices[0].message.content;
+
+            // Hide typing indicator
+            typingIndicator.style.display = "none";
+
+            // Add bot response to chat
+            addMessage(botResponse, "bot");
+          } catch (error) {
+            // Hide typing indicator
+            typingIndicator.style.display = "none";
+
+            // Show error message
+            addMessage(
+              "Sorry, I encountered an error. Please check your API key and try again.",
+              "bot"
+            );
+            console.error("Error calling Groq API:", error);
+          }
+        }
+
+        // Add welcome message if chat is empty
+        if (chatMessages.children.length === 0) {
+          addMessage(
+            "Hi there! I'm your Git assistant. I can help you troubleshoot any errors you encounter while setting up or using Git. What seems to be the problem?",
+            "bot"
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
