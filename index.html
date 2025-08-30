@@ -1943,8 +1943,6 @@
     </div>
 
     <script>
-      // Your existing JavaScript remains the same
-
       // Chatbot functionality
       document.addEventListener("DOMContentLoaded", function () {
         const chatbotToggle = document.getElementById("chatbotToggle");
@@ -2007,18 +2005,18 @@
         }
 
         // Call Groq API
+        // Call Groq API through Netlify function
         async function callGroqAPI(userMessage) {
           try {
-            const apiUrl = "/.netlify/functions/chat";
+            const apiUrl = "/.netlify/functions/chat"; // no API key here!
 
             const response = await fetch(apiUrl, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${apiKey}`,
               },
               body: JSON.stringify({
-                model: "llama-3.1-8b-instant", // You can change this to other available models
+                model: "llama-3.1-8b-instant", // You can change this to other models
                 messages: [
                   {
                     role: "system",
@@ -2053,7 +2051,7 @@
 
             // Show error message
             addMessage(
-              "Sorry, I encountered an error. Please check your API key and try again.",
+              "Sorry, I encountered an error. Please check your setup and try again.",
               "bot"
             );
             console.error("Error calling Groq API:", error);

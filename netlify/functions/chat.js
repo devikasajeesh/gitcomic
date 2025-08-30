@@ -8,6 +8,8 @@ export async function handler(event, context) {
   }
 
   try {
+    const body = JSON.parse(event.body); // parse incoming JSON
+
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
       {
@@ -16,14 +18,14 @@ export async function handler(event, context) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`, // hidden in Netlify
         },
-        body: event.body,
+        body: JSON.stringify(body), // forward JSON
       }
     );
 
     const data = await response.json();
 
     return {
-      statusCode: 200,
+      statusCode: response.status,
       body: JSON.stringify(data),
     };
   } catch (err) {
