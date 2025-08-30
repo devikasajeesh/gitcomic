@@ -187,7 +187,7 @@
           45deg,
           rgba(255, 255, 255, 0) 40%,
           rgba(255, 255, 255, 0.5) 50%,
-          rgba(255, 255, 255, 0) 60%
+          rgba(255, 255, 255, 255) 60%
         );
         background-size: 200% 200%;
         animation: shine 3s infinite linear;
@@ -219,7 +219,7 @@
         border-radius: 50%;
         background: #fff;
         box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
-        filter: drop-shadow(3px 3px 0 #000);
+        filter: drop-shadow(3px 2px 0 #000);
         transition: transform 0.3s ease;
       }
 
@@ -294,7 +294,7 @@
         margin-top: 30px;
         font-family: "Fredoka One", cursive;
         font-size: 1rem;
-        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 8px 8px rgba(0, 0, 0, 0.2);
         position: relative;
         overflow: hidden;
         z-index: 3;
@@ -373,7 +373,7 @@
       }
 
       /* Motion lines */
-      .motion-lines {
+      .motionlines {
         position: absolute;
         height: 5px;
         background: repeating-linear-gradient(
@@ -863,6 +863,7 @@
         <button class="episode-btn" data-episode="3">Configure</button>
         <button class="episode-btn" data-episode="4">First Commit</button>
         <button class="episode-btn" data-episode="5">GitHub</button>
+        <button class="episode-btn" data-episode="6">Advanced</button>
       </div>
 
       <!-- Progress tracker -->
@@ -968,7 +969,7 @@
 
           <!-- Navigation -->
           <div class="nav">
-            <a href="#" onclick="showEpisode(2); updateProgress(20);"
+            <a href="#" onclick="showEpisode(2); updateProgress(17);"
               >Next Episode →</a
             >
           </div>
@@ -986,7 +987,7 @@
           <div class="panel">
             <div class="avatar">
               <img
-                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                src="https://api.dicebear.com/7.x/bottts/svg?student&backgroundColor=4CAF50"
                 alt="Student Avatar"
               />
             </div>
@@ -1063,7 +1064,7 @@
             <div class="terminal-output" id="terminal-output">
               <span class="terminal-prompt">$ </span>git --version<br />
               <span id="git-version-output"
-                >Click "Check Git Version" to simulate</span
+                >Type 'git --version' in the input below</span
               >
             </div>
             <div>
@@ -1078,16 +1079,19 @@
           </div>
 
           <div class="interactive-demo">
-            <button class="demo-btn" onclick="checkGitVersion()">
-              Check Git Version
-            </button>
-            <p id="git-version-result"></p>
+            <p>
+              If you see something like
+              <span style="color: var(--accent-green); font-weight: bold"
+                >git version 2.37.1</span
+              >
+              Git is installed properly!
+            </p>
           </div>
 
           <!-- Navigation -->
           <div class="nav">
             <a href="#" onclick="showEpisode(1);">← Previous Episode</a>
-            <a href="#" onclick="showEpisode(3); updateProgress(40);"
+            <a href="#" onclick="showEpisode(3); updateProgress(33);"
               >Next Episode →</a
             >
           </div>
@@ -1168,13 +1172,14 @@
               <div></div>
             </div>
             <div class="terminal-output" id="config-terminal-output">
-              <span class="terminal-prompt">$ </span>git config --global
-              user.name "Your Name"<br />
-              <span class="terminal-prompt">$ </span>git config --global
-              user.email "your@email.com"<br />
-              <span id="config-output"
-                >Enter your details and click "Set Identity" to simulate</span
-              >
+              <span class="terminal-prompt">$ </span
+              ><span id="config-command-1"
+                >git config --global user.name "Your Name"</span
+              ><br />
+              <span class="terminal-prompt">$ </span
+              ><span id="config-command-2"
+                >git config --global user.email "your@email.com"</span
+              ><br />
             </div>
             <div>
               <span class="terminal-prompt">$ </span>
@@ -1189,39 +1194,15 @@
 
           <!-- Interactive Demo -->
           <div class="interactive-demo">
-            <h3>Configure Your Identity</h3>
-            <input
-              type="text"
-              id="user-name"
-              placeholder="Your Name"
-              style="
-                padding: 8px;
-                margin: 5px;
-                border: 2px solid #000;
-                border-radius: 4px;
-              "
-            />
-            <input
-              type="email"
-              id="user-email"
-              placeholder="your@email.com"
-              style="
-                padding: 8px;
-                margin: 5px;
-                border: 2px solid #000;
-                border-radius: 4px;
-              "
-            />
-            <button class="demo-btn" onclick="setUserConfig()">
-              Set Identity
-            </button>
+            <h3>Try these commands in your terminal</h3>
+
             <p id="config-result"></p>
           </div>
 
           <!-- Navigation -->
           <div class="nav">
             <a href="#" onclick="showEpisode(2);">← Previous Episode</a>
-            <a href="#" onclick="showEpisode(4); updateProgress(60);"
+            <a href="#" onclick="showEpisode(4); updateProgress(50);"
               >Next Episode →</a
             >
           </div>
@@ -1324,9 +1305,6 @@
               <span class="terminal-prompt">$ </span>git add .<br />
               <span class="terminal-prompt">$ </span>git commit -m "First
               commit"<br />
-              <span id="commit-output"
-                >Click "Simulate First Commit" to see the result</span
-              >
             </div>
             <div>
               <span class="terminal-prompt">$ </span>
@@ -1341,16 +1319,15 @@
 
           <!-- Interactive Demo -->
           <div class="interactive-demo">
-            <button class="demo-btn" onclick="simulateFirstCommit()">
-              Simulate First Commit
-            </button>
+            <h3>Try these commands in your terminal</h3>
+
             <p id="commit-result"></p>
           </div>
 
           <!-- Navigation -->
           <div class="nav">
             <a href="#" onclick="showEpisode(3);">← Previous Episode</a>
-            <a href="#" onclick="showEpisode(5); updateProgress(80);"
+            <a href="#" onclick="showEpisode(5); updateProgress(67);"
               >Next Episode →</a
             >
           </div>
@@ -1453,8 +1430,7 @@
               https://github.com/yourusername/repo.git<br />
               <span class="terminal-prompt">$ </span>git push -u origin main<br />
               <span id="github-output"
-                >Enter your GitHub details and click "Connect to GitHub" to
-                simulate</span
+                >Type the commands below to simulate</span
               >
             </div>
             <div>
@@ -1470,38 +1446,150 @@
 
           <!-- Interactive Demo -->
           <div class="interactive-demo">
-            <h3>Simulate GitHub Setup</h3>
-            <input
-              type="text"
-              id="github-username"
-              placeholder="GitHub username"
-              style="
-                padding: 8px;
-                margin: 5px;
-                border: 2px solid #000;
-                border-radius: 4px;
-              "
-            />
-            <input
-              type="text"
-              id="repo-name"
-              placeholder="Repository name"
-              style="
-                padding: 8px;
-                margin: 5px;
-                border: 2px solid #000;
-                border-radius: 4px;
-              "
-            />
-            <button class="demo-btn" onclick="setupGitHub()">
-              Connect to GitHub
-            </button>
+            <h3>Try these commands in your terminal</h3>
+
             <p id="github-result"></p>
           </div>
 
           <!-- Navigation -->
           <div class="nav">
             <a href="#" onclick="showEpisode(4);">← Previous Episode</a>
+            <a href="#" onclick="showEpisode(6); updateProgress(83);"
+              >Next Episode →</a
+            >
+          </div>
+
+          <div class="footer">Learn Git the fun way!</div>
+        </div>
+      </div>
+
+      <!-- Episode 6: Advanced GitHub Commands -->
+      <div class="episode" id="episode6">
+        <div class="comic-container">
+          <h1 class="comic-title">Episode 6: GitHub Power Moves</h1>
+
+          <!-- Scene 1 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=student&backgroundColor=4CAF50"
+                alt="Student Avatar"
+              />
+            </div>
+            <div class="bubble student">
+              My code is on GitHub! What other cool things can I do with Git and
+              GitHub?
+            </div>
+          </div>
+
+          <!-- Scene 2 -->
+          <div class="panel">
+            <div class="avatar">
+              <img
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=guru&backgroundColor=FF9800"
+                alt="Guru Avatar"
+              />
+            </div>
+            <div class="bubble guru">
+              Let me show you some power moves! GitHub is more than just storage
+              - it's a collaboration powerhouse!
+            </div>
+            <div class="action-text" style="right: 50px; bottom: 20px">
+              POW!
+            </div>
+          </div>
+
+          <div class="cheatsheet">
+            <h3>Advanced GitHub Commands</h3>
+
+            <div class="command-box">
+              git clone https://github.com/user/repo.git
+            </div>
+            <p>Clone an existing repository to your local machine</p>
+
+            <div class="command-box">git branch feature-branch</div>
+            <p>Create a new branch for your feature</p>
+
+            <div class="command-box">git checkout feature-branch</div>
+            <p>Switch to your feature branch</p>
+
+            <div class="command-box">git pull origin main</div>
+            <p>Get the latest changes from the main branch</p>
+
+            <div class="command-box">git push origin feature-branch</div>
+            <p>Push your branch to GitHub</p>
+
+            <div class="example-box">
+              <h4>GitHub Collaboration Workflow</h4>
+              <p>1. Create a branch for each new feature</p>
+              <p>2. Make your changes and commit them</p>
+              <p>3. Push your branch to GitHub</p>
+              <p>4. Create a Pull Request to merge your changes</p>
+              <p>5. Collaborate with others through code reviews</p>
+              <p>6. Merge your changes after approval</p>
+            </div>
+          </div>
+
+          <!-- Terminal Simulator -->
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <div class="terminal-control close"></div>
+                <div class="terminal-control minimize"></div>
+                <div class="terminal-control maximize"></div>
+              </div>
+              <div>bash</div>
+              <div></div>
+            </div>
+            <div class="terminal-output" id="advanced-terminal-output">
+              <span class="terminal-prompt">$ </span>git branch new-feature<br />
+              <span class="terminal-prompt">$ </span>git checkout new-feature<br />
+              <span class="terminal-prompt">$ </span># Make some changes...<br />
+              <span class="terminal-prompt">$ </span>git add .<br />
+              <span class="terminal-prompt">$ </span>git commit -m "Add new
+              feature"<br />
+              <span class="terminal-prompt">$ </span>git push origin
+              new-feature<br />
+              <span id="advanced-output"
+                >Try these commands in the terminal below</span
+              >
+            </div>
+            <div>
+              <span class="terminal-prompt">$ </span>
+              <input
+                type="text"
+                class="terminal-input"
+                id="advanced-terminal-input"
+                placeholder="Try 'git branch' or 'git checkout'"
+              />
+            </div>
+          </div>
+
+          <!-- Interactive Demo -->
+          <div class="interactive-demo">
+            <h3>GitHub Collaboration Features</h3>
+            <div class="install-buttons">
+              <a
+                href="https://docs.github.com/en/pull-requests"
+                target="_blank"
+                class="install-btn"
+              >
+                <i class="fas fa-code-branch"></i> Learn about Pull Requests
+              </a>
+              <a
+                href="https://docs.github.com/en/issues"
+                target="_blank"
+                class="install-btn"
+              >
+                <i class="fas fa-tasks"></i> Learn about Issues
+              </a>
+            </div>
+            <p id="advanced-result"></p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="nav">
+            <a href="#" onclick="showEpisode(5);">← Previous Episode</a>
             <a href="#" onclick="showEpisode(1); updateProgress(100);"
               >Back to Start</a
             >
@@ -1545,46 +1633,6 @@
         progressPercent.textContent = percent + "%";
       }
 
-      // Interactive demo functions
-      function checkGitVersion() {
-        document.getElementById("git-version-output").textContent =
-          "git version 2.37.1 (simulated)";
-        document.getElementById("git-version-result").textContent =
-          "✅ Git is installed correctly!";
-      }
-
-      function setUserConfig() {
-        const name = document.getElementById("user-name").value || "Your Name";
-        const email =
-          document.getElementById("user-email").value || "your@email.com";
-
-        document.getElementById(
-          "config-output"
-        ).textContent = `Identity set to: ${name} <${email}> (simulated)`;
-        document.getElementById("config-result").textContent =
-          "✅ Git identity configured successfully!";
-      }
-
-      function simulateFirstCommit() {
-        document.getElementById("commit-output").textContent =
-          "[main (root-commit) abc1234] First commit 🚀\n 1 file changed, 1 insertion(+)";
-        document.getElementById("commit-result").textContent =
-          "✅ First commit created successfully!";
-      }
-
-      function setupGitHub() {
-        const username =
-          document.getElementById("github-username").value || "yourusername";
-        const repo =
-          document.getElementById("repo-name").value || "awesome-project";
-
-        document.getElementById(
-          "github-output"
-        ).textContent = `Enumerating objects: 3, done.\nCounting objects: 100% (3/3), done.\nWriting objects: 100% (3/3), 256 bytes | 256.00 KiB/s, done.\nTotal 3 (delta 0), reused 0 (delta 0), pack-reused 0\nTo https://github.com/${username}/${repo}.git\n * [new branch]      main -> main\nBranch 'main' set up to track remote branch 'main' from 'origin'.`;
-        document.getElementById("github-result").textContent =
-          "✅ Successfully connected to GitHub!";
-      }
-
       // Add event listeners to episode buttons
       document.querySelectorAll(".episode-btn").forEach((btn) => {
         btn.addEventListener("click", function () {
@@ -1599,28 +1647,52 @@
             const command = this.value;
             this.value = "";
 
+            const outputEl = this.parentElement.previousElementSibling;
+
             // Simple command simulation
-            if (command.includes("git --version")) {
-              const outputEl = this.parentElement.previousElementSibling;
-              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>git version 2.37.1 (simulated)<br>`;
-              outputEl.scrollTop = outputEl.scrollHeight;
+            outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>`;
+            if (command.trim() === "mkdir my-project") {
+              outputEl.innerHTML += `Created directory 'my-project'<br>`;
+            } else if (command.trim() === "cd my-project") {
+              outputEl.innerHTML += `Changed directory to 'my-project'<br>`;
+            } else if (command.trim() === 'echo "Hello Git!" > README.md') {
+              outputEl.innerHTML += `Created README.md with content: Hello Git!<br>`;
+            } else if (command.trim() === "git init") {
+              outputEl.innerHTML += `Initialized empty Git repository in ./my-project/<br>`;
+            } else if (command.trim() === "git add .") {
+              outputEl.innerHTML += `Changes staged for commit<br>`;
+            } else if (command.trim() === 'git commit -m "First commit"') {
+              outputEl.innerHTML += `[main (root-commit) abc1234] First commit<br> 1 file changed, 1 insertion(+)<br>`;
+            } else if (
+              command.trim() ===
+              "git remote add origin https://github.com/yourusername/repo.git"
+            ) {
+              outputEl.innerHTML += `Remote 'origin' added: https://github.com/yourusername/repo.git<br>`;
+            } else if (command.trim() === "git push -u origin main") {
+              outputEl.innerHTML += `Enumerating objects: 3, done.<br>Counting objects: 100% (3/3), done.<br>Writing objects: 100% (3/3), 256 bytes | 256.00 KiB/s, done.<br>Total 3 (delta 0), reused 0 (delta 0), pack-reused 0<br>To https://github.com/yourusername/repo.git<br> * [new branch]      main -> main<br>Branch 'main' set up to track remote branch 'main' from 'origin'.<br>`;
+            } else if (command.includes("git --version")) {
+              outputEl.innerHTML += `git version 2.37.1<br>`;
             } else if (command.includes("git config")) {
-              const outputEl = this.parentElement.previousElementSibling;
-              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Configuration updated (simulated)<br>`;
-              outputEl.scrollTop = outputEl.scrollHeight;
+              outputEl.innerHTML += `Configuration updated<br>`;
             } else if (command.includes("git init")) {
-              const outputEl = this.parentElement.previousElementSibling;
-              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Initialized empty Git repository (simulated)<br>`;
-              outputEl.scrollTop = outputEl.scrollHeight;
+              outputEl.innerHTML += `Initialized empty Git repository in ./my-project/<br>`;
+            } else if (command.includes("git add")) {
+              outputEl.innerHTML += `Changes staged for commit<br>`;
+            } else if (command.includes("git commit")) {
+              outputEl.innerHTML += `[main (root-commit) abc1234] First commit<br> 1 file changed, 1 insertion(+)<br>`;
             } else if (command.includes("git remote")) {
-              const outputEl = this.parentElement.previousElementSibling;
-              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Remote added successfully (simulated)<br>`;
-              outputEl.scrollTop = outputEl.scrollHeight;
+              outputEl.innerHTML += `Remote added successfully<br>`;
+            } else if (command.includes("git push")) {
+              outputEl.innerHTML += `Enumerating objects: 3, done.<br>Counting objects: 100% (3/3), done.<br>Writing objects: 100% (3/3), 256 bytes | 256.00 KiB/s, done.<br>Total 3 (delta 0), reused 0 (delta 0), pack-reused 0<br>To https://github.com/yourusername/repo.git<br> * [new branch]      main -> main<br>Branch 'main' set up to track remote branch 'main' from 'origin'.<br>`;
+            } else if (command.includes("git branch")) {
+              outputEl.innerHTML += `Branch created successfully<br>`;
+            } else if (command.includes("git checkout")) {
+              outputEl.innerHTML += `Switched to branch 'new-feature'<br>`;
             } else if (command) {
-              const outputEl = this.parentElement.previousElementSibling;
-              outputEl.innerHTML += `<span class="terminal-prompt">$ </span>${command}<br>Command not recognized: ${command}<br>`;
-              outputEl.scrollTop = outputEl.scrollHeight;
+              outputEl.innerHTML += `Command not recognized: ${command}<br>`;
             }
+
+            outputEl.scrollTop = outputEl.scrollHeight;
           }
         });
       });
